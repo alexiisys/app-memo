@@ -37,7 +37,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   assetBundlePatterns: ['**/*'],
   ios: {
-    supportsTablet: true,
+    supportsTablet: false,
     bundleIdentifier: Env.BUNDLE_ID,
     config: {
       usesNonExemptEncryption: false, // Avoid the export compliance warning on the app store
@@ -73,7 +73,26 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     [
+      'expo-image-picker',
+      {
+        photosPermission: 'The app accesses your photos.',
+      },
+    ],
+    [
       'expo-font',
+      {
+        fonts: [
+          './assets/fonts/Gilroy-Regular.ttf',
+          './assets/fonts/Gilroy-Bold.ttf',
+          './assets/fonts/Gilroy-SemiBold.ttf',
+          './assets/fonts/Gilroy-Medium.ttf',
+          './assets/fonts/Gilroy-ExtraBold.ttf',
+          './assets/fonts/Gilroy-Thin.ttf',
+          './assets/fonts/Gilroy-UltraLight.ttf',
+          './assets/fonts/Gilroy-Light.ttf',
+          './assets/fonts/Gilroy-Black.ttf',
+        ],
+      },
     ],
     'expo-localization',
     'expo-router',

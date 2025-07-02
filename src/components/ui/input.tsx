@@ -12,21 +12,32 @@ import { I18nManager, StyleSheet, View } from 'react-native';
 import { TextInput as NTextInput } from 'react-native';
 import { tv } from 'tailwind-variants';
 
-import colors from './colors';
 import { Text } from './text';
 
 const inputTv = tv({
   slots: {
-    container: 'mb-2',
-    label: 'mb-2 text-lg text-app-subTransText dark:text-app-darkInputLabel',
+    container: 'flex-1',
+    inputContainer: 'align-center relative flex-row gap-2',
+    label: 'text-md mb-2 font-gilroy font-medium text-grey',
     input:
-      'mt-0 rounded-xl border-neutral-300 bg-app-primary p-4 font-inter text-base font-medium  leading-5 dark:border-neutral-700 dark:bg-app-backgroundInput dark:text-white',
+      'rounded-xl border-neutral-300 bg-light p-4 font-gilroy text-base font-medium leading-5  dark:border-neutral-700 dark:bg-dark dark:text-white',
   },
 
   variants: {
+    outlined: {
+      true: {
+        input: 'rounded-xl border border-stroke bg-white ',
+      },
+    },
     focused: {
       true: {
         input: '',
+      },
+    },
+    search: {
+      true: {
+        input: 'bg-textGrey text-white',
+        inputContainer: 'bg-textGrey items-center rounded-md px-2',
       },
     },
     error: {
@@ -52,7 +63,11 @@ export interface NInputProps extends TextInputProps {
   label?: string;
   disabled?: boolean;
   error?: string;
+  search?: boolean;
+  outlined?: boolean;
+  require?: boolean;
   icon?: ReactElement;
+  leftIcon?: ReactElement;
 }
 
 type TRule<T extends FieldValues> =
@@ -74,7 +89,17 @@ interface ControlledInputProps<T extends FieldValues>
     InputControllerType<T> {}
 
 export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
-  const { label, error, testID, icon, ...inputProps } = props;
+  const {
+    label,
+    error,
+    testID,
+    icon,
+    outlined,
+    leftIcon,
+    search,
+    require,
+    ...inputProps
+  } = props;
   const [isFocussed, setIsFocussed] = React.useState(false);
   const onBlur = React.useCallback(() => setIsFocussed(false), []);
   const onFocus = React.useCallback(() => setIsFocussed(true), []);
@@ -85,8 +110,10 @@ export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
         error: Boolean(error),
         focused: isFocussed,
         disabled: Boolean(props.disabled),
+        outlined: Boolean(outlined),
+        search: Boolean(search),
       }),
-    [error, isFocussed, props.disabled]
+    [error, isFocussed, props.disabled, outlined, search]
   );
 
   return (
@@ -97,13 +124,14 @@ export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
           className={styles.label()}
         >
           {label}
+          {require && <Text className="text-coralPink">*</Text>}
         </Text>
       )}
-      <View className="relative flex-row">
+      <View className={styles.inputContainer()}>
+        {leftIcon}
         <NTextInput
           testID={testID}
           ref={ref}
-          placeholderTextColor={colors.app.darkInputLabel}
           className={styles.input()}
           onBlur={onBlur}
           onFocus={onFocus}

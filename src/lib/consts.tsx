@@ -1,39 +1,29 @@
-import { type ColorValue } from 'react-native';
+export const HAIR_COLORS = [
+  { label: 'Light brown', value: 'light_brown' },
+  { label: 'Dark brown', value: 'dark_brown' },
+  { label: 'Blonde', value: 'blonde' },
+  { label: 'Red', value: 'red' },
+  { label: 'Black', value: 'black' },
+  { label: 'Gray', value: 'gray' },
+  { label: 'White', value: 'white' },
+  { label: 'Other', value: 'other' },
+];
 
-import { Salary } from '@/components/ui/icons';
-import {
-  DiningOut,
-  Groceries,
-  NewCategory,
-  Subscription,
-} from '@/components/ui/icons/categories';
+export const EYE_COLORS = [
+  { label: 'Blue', value: 'blue' },
+  { label: 'Green', value: 'green' },
+  { label: 'Brown', value: 'brown' },
+  { label: 'Gray', value: 'gray' },
+  { label: 'Hazel', value: 'hazel' },
+  { label: 'Amber', value: 'amber' },
+  { label: 'Other', value: 'other' },
+];
 
-export const CurrencyObject = {
-  dollar: '$',
-  euro: '€',
-  ruble: '₽',
-} as const;
-
-export type CurrencyName = keyof typeof CurrencyObject;
-export type CurrencySymbol = (typeof CurrencyObject)[CurrencyName];
-
-export type GradientVariantType = 'blue' | 'green' | 'orange';
-
-export const GradientVariants: Record<
-  GradientVariantType,
-  [ColorValue, ColorValue]
-> = {
-  blue: ['#1FB0BF', '#4070E9'],
-  green: ['#24BF1F', '#BCE940'],
-  orange: ['#FCAD5E', '#E95740'],
-};
-
-export const IconCategories = (color: string) => ({
-  cat_1: () => <Salary color={color} width={20} height={20} />,
-  cat_2: () => <Groceries color={color} width={20} height={20} />,
-  cat_3: () => <Subscription color={color} width={20} height={20} />,
-  cat_4: () => <DiningOut color={color} width={20} height={20} />,
-  default: () => <NewCategory color={color} width={20} height={20} />,
-});
-export const BaseCategoriesID = ['cat_1', 'cat_2', 'cat_3', 'cat_4'];
-export type BaseCategoryIDType = 'cat_1' | 'cat_2' | 'cat_3' | 'cat_4';
+export function getAge(birthDate: Date, now: Date = new Date()): number {
+  let age = now.getFullYear() - birthDate.getFullYear();
+  const m = now.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && now.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}

@@ -1,5 +1,5 @@
 {
-  "name": "viewcontacts",
+  "name": "truelink",
   "version": "0.0.1",
   "private": true,
   "main": "expo-router/entry",
@@ -58,6 +58,7 @@
     "expo-device": "~7.0.3",
     "expo-font": "~13.0.4",
     "expo-image": "~2.0.7",
+    "expo-image-picker": "~16.0.6",
     "expo-linear-gradient": "~14.0.2",
     "expo-linking": "~7.0.5",
     "expo-localization": "~16.0.1",
@@ -80,6 +81,7 @@
     "react-native-flash-message": "^0.4.2",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-gifted-charts": "^1.4.61",
+    "react-native-international-phone-number": "^0.9.3",
     "react-native-keyboard-controller": "^1.13.2",
     "react-native-mmkv": "~3.1.0",
     "react-native-modal-datetime-picker": "^18.0.0",

@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import WebView from 'react-native-webview';
 
 import { useIsWebView } from '@/lib';
+import { Env } from '@/lib/env';
 import { type AppLinkWrapperProps } from '@/types';
 
 export default function AppLinkWrapper({
@@ -11,7 +12,7 @@ export default function AppLinkWrapper({
 }: Omit<AppLinkWrapperProps, 'uri'>) {
   const [uri, loading, webview] = useIsWebView();
 
-  if (loading) {
+  if (loading && Env.APP_ENV !== 'development') {
     return _loader;
   }
 

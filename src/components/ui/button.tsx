@@ -7,15 +7,14 @@ import { tv } from 'tailwind-variants';
 
 const button = tv({
   slots: {
-    container:
-      'flex flex-1 flex-row items-center justify-center gap-2 rounded-lg',
-    label: 'font-inter text-lg font-semibold',
+    container: 'flex flex-row items-center justify-center gap-2 rounded-3xl',
+    label: 'font-gilroy-500',
   },
 
   variants: {
     variant: {
       default: {
-        container: 'bg-app-second',
+        container: 'bg-blue',
         label: 'text-white',
       },
       secondary: {
