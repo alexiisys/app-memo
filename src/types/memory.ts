@@ -1,0 +1,20 @@
+export type Memory = {
+  id: string;
+  city: string;
+  image: string;
+  liked: boolean;
+  title: string;
+  interests: string[];
+  description: string;
+  birth: string;
+  gender: 'man' | 'female';
+  country: string;
+  hairColor: string;
+  eyeColor: string;
+  weight: string;
+  height: string;
+  relationships: boolean;
+  orientation: 'straight' | 'homosexual';
+  smoking: boolean;
+  alcohol: boolean;
+};

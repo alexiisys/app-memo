@@ -65,7 +65,10 @@ type LabelProps = {
 
 const Label = ({ text, testID, className = '' }: LabelProps) => {
   return (
-    <Text testID={testID} className={` ${className} pl-2`}>
+    <Text
+      testID={testID}
+      className={` ${className} pl-2 font-gilroy-700 text-xl`}
+    >
       {text}
     </Text>
   );
@@ -203,9 +206,7 @@ export const SwitchIcon = ({ checked = false }: IconProps) => {
     ? THUMB_OFFSET
     : WIDTH - THUMB_WIDTH - THUMB_OFFSET;
 
-  const backgroundColor = checked
-    ? colors.app.iconInactive
-    : colors.app.iconActive;
+  const backgroundColor = checked ? '#EACB6E' : colors.blue;
 
   return (
     <View className="w-[50px] justify-center">

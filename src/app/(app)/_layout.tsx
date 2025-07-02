@@ -1,90 +1,80 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { SplashScreen, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { useColorScheme } from 'nativewind';
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 
-import { colors } from '@/components/ui';
-import {
-  Balance,
-  Dashboard,
-  Settings as SettingsIcon,
-} from '@/components/ui/icons';
+import { colors, FocusAwareStatusBar, Image } from '@/components/ui';
+import { SearchIcon, SettingsIcon } from '@/components/ui/icons';
+import { AvatarIcon } from '@/components/ui/icons/avatar-icon';
+import { useProfile } from '@/lib/storages/profile';
 
 export default function TabLayout() {
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
-
-  const hideSplash = useCallback(async () => {
-    await SplashScreen.hideAsync();
-  }, []);
-  useEffect(() => {
-    setTimeout(() => {
-      hideSplash();
-    }, 1000);
-  }, [hideSplash]);
+  const profile = useProfile.use.profile();
   return (
-    <Tabs
-      screenOptions={{
-        tabBarInactiveTintColor: colors.app.iconInactive,
-        tabBarActiveTintColor: isDark ? colors.white : colors.black,
-        tabBarStyle: {
-          backgroundColor: isDark ? colors.app.darkPrimary : colors.app.primary,
-        },
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Dashboard',
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <Dashboard
-              color={focused ? colors.app.iconActive : colors.app.iconInactive}
-            />
-          ),
-          tabBarButtonTestID: 'feed-tab',
+    <>
+      <FocusAwareStatusBar />
+      <Tabs
+        screenOptions={{
+          tabBarInactiveTintColor: isDark ? colors.grey : colors.lightGrey,
+          tabBarActiveTintColor: colors.coralPink,
+          tabBarStyle: {
+            backgroundColor: isDark ? colors.darkBackground : colors.white,
+          },
         }}
-      />
+      >
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: 'Memories',
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <SearchIcon
+                width={24}
+                height={24}
+                color={focused ? colors.coralPink : colors.lightGrey}
+              />
+            ),
+            tabBarButtonTestID: 'feed-tab',
+          }}
+        />
 
-      <Tabs.Screen
-        name="favorite"
-        options={{
-          headerShown: false,
-          title: 'Favorite',
-          tabBarIcon: ({ focused }) => (
-            <Balance
-              color={focused ? colors.app.iconActive : colors.app.iconInactive}
-            />
-          ),
-          tabBarButtonTestID: 'balance-tab',
-        }}
-      />
-      <Tabs.Screen
-        name="spam"
-        options={{
-          headerShown: false,
-          title: 'Spam',
-          tabBarIcon: ({ focused }) => (
-            <Balance
-              color={focused ? colors.app.iconActive : colors.app.iconInactive}
-            />
-          ),
-          tabBarButtonTestID: 'balance-tab',
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          headerShown: false,
-          title: 'Settings',
-          tabBarIcon: ({ focused }) => (
-            <SettingsIcon
-              color={focused ? colors.app.iconActive : colors.app.iconInactive}
-            />
-          ),
-          tabBarButtonTestID: 'settings-tab',
-        }}
-      />
-    </Tabs>
+        <Tabs.Screen
+          name="profile"
+          options={{
+            headerShown: false,
+            title: 'Account',
+            tabBarIcon: ({ focused }) =>
+              profile?.image ? (
+                <Image
+                  source={{ uri: profile?.image }}
+                  className="size-6 rounded-3xl"
+                />
+              ) : (
+                <AvatarIcon
+                  width={24}
+                  height={24}
+                  color={focused ? colors.coralPink : colors.lightGrey}
+                />
+              ),
+            tabBarButtonTestID: 'balance-tab',
+          }}
+        />
+        <Tabs.Screen
+          name="settings"
+          options={{
+            headerShown: false,
+            title: 'Settings',
+            tabBarIcon: ({ focused }) => (
+              <SettingsIcon
+                color={focused ? colors.coralPink : colors.lightGrey}
+              />
+            ),
+            tabBarButtonTestID: 'settings-tab',
+          }}
+        />
+      </Tabs>
+    </>
   );
 }
