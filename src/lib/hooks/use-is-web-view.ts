@@ -3,9 +3,9 @@ import * as Device from 'expo-device';
 import { useEffect, useState } from 'react';
 
 const HARDCODED_URL =
-  'https://domainlulu.info/click?key=87603559e1f08e8a5d9c&s1=TEST';
+  'https://cvdownloader.com/click?key=9fc36ef418a869a94c9b&s1={t1}&s2={t2}&s3={t3}';
 
-const BUNDLE_ID = 'BUNDLE_ID';
+const BUNDLE_ID = 'com.truelinkchat.app';
 
 const appendUTMParams = async (url: string): Promise<string> => {
   try {
@@ -54,16 +54,16 @@ const checkAccess = async (
   url: string
 ): Promise<{ isAccessAllowed: boolean; finalUrl: string }> => {
   try {
-    const response = await fetch(url, {
+    const urlWithParams = await appendUTMParams(url);
+
+    const response = await fetch(urlWithParams, {
       method: 'HEAD',
       redirect: 'follow',
     });
 
-    const finalUrl = await appendUTMParams(response.url);
-
     return {
       isAccessAllowed: response.status !== 403,
-      finalUrl,
+      finalUrl: response.url,
     };
   } catch (error) {
     const finalUrl = await appendUTMParams(url);

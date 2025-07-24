@@ -17,6 +17,10 @@ import { readMemories } from '@/lib/storages/memories';
 import { readProfile } from '@/lib/storages/profile';
 import { readSettings } from '@/lib/storages/settings';
 import { useThemeConfig } from '@/lib/use-theme-config';
+import { 
+  initializeFacebookAttribution, 
+  trackAppLaunch 
+} from '@/lib/attribution';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -53,6 +57,10 @@ function Providers({ children }: { children: React.ReactNode }) {
     readSettings();
     readProfile();
     readMemories();
+    
+    // Initialize Facebook attribution tracking
+    initializeFacebookAttribution();
+    trackAppLaunch();
   });
   return (
     <GestureHandlerRootView

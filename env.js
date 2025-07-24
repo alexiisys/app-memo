@@ -34,11 +34,12 @@ require('dotenv').config({
 
 // TODO: Replace these values with your own
 
-const BUNDLE_ID = 'com.truelink.app'; // ios bundle id
-const PACKAGE = 'com.truelink.app'; // android package name
+const BUNDLE_ID = 'com.truelinkchat.app'; // ios bundle id
+const PACKAGE = 'com.truelinkchat.app'; // android package name
 const NAME = 'TrueLink'; // app name
-const EXPO_ACCOUNT_OWNER = 'expo-owner'; // expo account owner
-const EAS_PROJECT_ID = 'c3e1079b-6fe7-4686-7a49-35b4666a6229044'; // eas project id
+const SLUG = 'truelink'; // expo app slug
+const EXPO_ACCOUNT_OWNER = 'david.appdev.info'; // expo account owner
+const EAS_PROJECT_ID = '80e9a086-c0ea-4d03-8a22-1e2e0c8a8615'; // eas project id
 const SCHEME = 'TrueLink'; // app scheme
 
 /**
@@ -77,11 +78,14 @@ const client = z.object({
   BUNDLE_ID: z.string(),
   PACKAGE: z.string(),
   VERSION: z.string(),
+  SLUG: z.string(),
   BRANCH_SDK_KEY: z.string(),
   // ADD YOUR CLIENT ENV VARS HERE
   API_URL: z.string(),
   VAR_NUMBER: z.number(),
   VAR_BOOL: z.boolean(),
+  FB_APP_ID: z.string(),
+  FB_CLIENT_TOKEN: z.string(),
 });
 
 const buildTime = z.object({
@@ -101,11 +105,14 @@ const _clientEnv = {
   BUNDLE_ID: withEnvSuffix(BUNDLE_ID),
   PACKAGE: withEnvSuffix(PACKAGE),
   VERSION: packageJSON.version,
+  SLUG: SLUG,
   BRANCH_SDK_KEY: process.env.BRANCH_SDK_KEY,
   // ADD YOUR ENV VARS HERE TOO
   API_URL: process.env.API_URL,
   VAR_NUMBER: Number(process.env.VAR_NUMBER),
   VAR_BOOL: process.env.VAR_BOOL === 'true',
+  FB_APP_ID: process.env.FB_APP_ID,
+  FB_CLIENT_TOKEN: process.env.FB_CLIENT_TOKEN,
 };
 
 /**

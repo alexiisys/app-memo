@@ -5,11 +5,28 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button, Switch, Text } from '@/components/ui';
 import { useSelectedTheme } from '@/lib';
+import { openLinkInBrowser } from '@/lib/utils';
 
 export default function Settings() {
   const { selectedTheme, setSelectedTheme } = useSelectedTheme();
   const isDark = selectedTheme === 'dark';
   const switchTheme = () => setSelectedTheme(isDark ? 'light' : 'dark');
+
+  const handlePrivacyPolicy = () => {
+    openLinkInBrowser(
+      'https://v0-true-link-privacy-policy.vercel.app/privacy-policy'
+    );
+  };
+
+  const handleFeedback = () => {
+    openLinkInBrowser(
+      'https://v0-true-link-privacy-policy.vercel.app/feedback'
+    );
+  };
+
+  const handleContactUs = () => {
+    openLinkInBrowser('mailto:truelinkchatapp@gmail.com');
+  };
 
   return (
     <>
@@ -19,25 +36,38 @@ export default function Settings() {
         </View>
         <View className="mb-2 h-px bg-gray-200" />
         <View className="mt-8 flex-1 px-6">
-          <View className="relative flex-1 gap-10">
-            <Switch
-              checked={!isDark}
-              onChange={switchTheme}
-              label={isDark ? 'Dark theme' : 'Light theme'}
-              accessibilityLabel={'theme_switch'}
-            />
+          <View className="relative flex-1 gap-8">
             <View>
-              <Text className="mb-2 font-gilroy-700 text-3xl">
-                Confidentiality
-              </Text>
-              <Text className="text-blue underline">Privacy Policy</Text>
+              <Text className="mb-4 font-gilroy-700 text-xl">Appearance</Text>
+              <Switch
+                checked={!isDark}
+                onChange={switchTheme}
+                label={isDark ? 'Dark theme' : 'Light theme'}
+                accessibilityLabel={'theme_switch'}
+              />
             </View>
-            <View
-              className="absolute right-0 w-full gap-4"
-              style={{ bottom: 12 }}
-            >
-              <Text className="text-center ">Have a problem?</Text>
-              <Button label={'Contact us'} />
+
+            <View>
+              <Text className="mb-4 font-gilroy-700 text-xl">
+                Legal & Support
+              </Text>
+              <View className="gap-3">
+                <Button
+                  label="Privacy Policy"
+                  variant="secondary"
+                  onPress={handlePrivacyPolicy}
+                />
+                <Button
+                  label="Send Feedback"
+                  variant="secondary"
+                  onPress={handleFeedback}
+                />
+              </View>
+            </View>
+
+            <View className="absolute inset-x-0 bottom-0 gap-4">
+              <Text className="text-center text-gray-600">Have a problem?</Text>
+              <Button label="Contact us" onPress={handleContactUs} />
             </View>
           </View>
         </View>
