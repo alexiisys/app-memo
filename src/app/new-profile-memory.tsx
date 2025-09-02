@@ -21,9 +21,9 @@ import { Close } from '@/components/ui/icons';
 import { ArrowLeft } from '@/components/ui/icons/arrow-left';
 import { AvatarIcon } from '@/components/ui/icons/avatar-icon';
 import { EYE_COLORS, HAIR_COLORS } from '@/lib/consts';
-import { addMemory } from '@/lib/storages/memories';
+import { addMemory } from 'src/lib/storage/modules/memories';
 import { type Memory } from '@/types';
-import { saveImagePermanently } from '@/utils';
+import { saveImagePermanently } from '@/lib/utils/image-manager';
 
 const schema = z.object({
   image: z.string().optional(),

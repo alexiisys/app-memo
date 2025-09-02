@@ -1,12 +1,12 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button, Switch, Text } from '@/components/ui';
 import { useSelectedTheme } from '@/lib';
-import { openLinkInBrowser } from '@/lib/utils';
 import { Env } from '@/lib/env';
+import { openLinkInBrowser } from '@/lib/utils';
 
 export default function Settings() {
   const { selectedTheme, setSelectedTheme } = useSelectedTheme();
@@ -14,13 +14,11 @@ export default function Settings() {
   const switchTheme = () => setSelectedTheme(isDark ? 'light' : 'dark');
 
   const handlePrivacyPolicy = () => {
-    openLinkInBrowser(
-      Env.PRIVACY_POLICY    );
+    openLinkInBrowser(Env.PRIVACY_POLICY);
   };
 
   const handleFeedback = () => {
-    openLinkInBrowser(
-      Env.FEEDBACK_FORM    );
+    openLinkInBrowser(Env.FEEDBACK_FORM);
   };
 
   return (
@@ -62,8 +60,6 @@ export default function Settings() {
 
             <View className="absolute inset-x-0 bottom-0 gap-4">
               <Text className="text-center text-gray-600">Have a problem?</Text>
-
-
             </View>
           </View>
         </View>

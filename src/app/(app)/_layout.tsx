@@ -2,11 +2,12 @@
 import { Tabs } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React from 'react';
+import { useProfile } from 'src/lib/storage/modules/profile';
 
 import { colors, FocusAwareStatusBar, Image } from '@/components/ui';
-import { SearchIcon, SettingsIcon } from '@/components/ui/icons';
+import { SearchIcon } from '@/components/ui/icons';
 import { AvatarIcon } from '@/components/ui/icons/avatar-icon';
-import { useProfile } from '@/lib/storages/profile';
+import { SettingsIcon } from '@/components/ui/icons/setting-icon';
 
 export default function TabLayout() {
   const { colorScheme } = useColorScheme();

@@ -1,4 +1,4 @@
-import { getItem, setItem } from '@/lib/storage';
+import { getItem, setItem } from '@/lib/storage/helpers';
 import { type Profile } from '@/types';
 
 const store = 'profile';

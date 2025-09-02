@@ -3,25 +3,23 @@ import '../../global.css';
 
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
+import { readMemories } from 'src/lib/storage/modules/memories';
+import { readProfile } from 'src/lib/storage/modules/profile';
 
 import AppLinkWrapper from '@/components/wrappers/app-link-wrapper';
 import { loadSelectedTheme } from '@/lib';
-import { readSettings } from '@/lib/storage';
-import { loadSelectedTheme } from '@/lib';
-import { readMemories } from '@/lib/storages/memories';
-import { readProfile } from '@/lib/storages/profile';
-import { readSettings } from '@/lib/storages/settings';
-import { useThemeConfig } from '@/lib/use-theme-config';
 import {
   initializeFacebookAttribution,
-  trackAppLaunch
+  trackAppLaunch,
 } from '@/lib/attribution';
+import { readSettings } from '@/lib/storage';
+import { useThemeConfig } from '@/lib/use-theme-config';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -46,7 +44,6 @@ export default function RootLayout() {
           name="new-profile-memory"
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="report" />
       </Stack>
     </Providers>
   );

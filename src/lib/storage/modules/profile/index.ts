@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 
-import { createSelectors } from '@/lib';
 import { type Profile } from '@/types';
 
 import { getProfile, writeProfile } from './utils';
+import { createSelectors } from '@/lib/utils';
 
 interface ProfileState {
   profile: Profile | null;

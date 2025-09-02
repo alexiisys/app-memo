@@ -7,7 +7,7 @@ import { EditIcon } from '@/components/ui/icons';
 import { AvatarIcon } from '@/components/ui/icons/avatar-icon';
 import { useSelectedTheme } from '@/lib';
 import { EYE_COLORS, getAge, HAIR_COLORS } from '@/lib/consts';
-import { useProfile } from '@/lib/storages/profile';
+import { useProfile } from '@/lib/storage/modules/profile';
 
 const ProfileInfoRow = ({ label, value }: { label: string; value: string }) => (
   <View className="flex-row items-center justify-between border-b border-gray-100 py-3">

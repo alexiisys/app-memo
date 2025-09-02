@@ -1,6 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native';
+import { useMemory } from 'src/lib/storage/modules/memories';
 
 import { colors, Image, SafeAreaView, Text, View } from '@/components/ui';
 import { Close } from '@/components/ui/icons';
@@ -8,7 +9,6 @@ import { ArrowLeft } from '@/components/ui/icons/arrow-left';
 import { AvatarIcon } from '@/components/ui/icons/avatar-icon';
 import { PinIcon } from '@/components/ui/icons/pin-icon';
 import { EYE_COLORS, getAge, HAIR_COLORS } from '@/lib/consts';
-import { useMemory } from '@/lib/storages/memories';
 
 export default function ProfileMemoryScreen() {
   const router = useRouter();

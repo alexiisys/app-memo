@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image, Text, View } from '@/components/ui';
 import { HeartIcon, Plus } from '@/components/ui/icons';
 import { PinIcon } from '@/components/ui/icons/pin-icon';
-import { useMemory } from '@/lib/storages/memories';
+import { useMemory } from 'src/lib/storage/modules/memories';
 import { type Memory } from '@/types';
 
 type MemoryCardProps = {

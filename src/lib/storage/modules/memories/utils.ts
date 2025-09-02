@@ -1,5 +1,5 @@
-import { getItem, setItem } from '@/lib/storage';
 import { type Memory } from '@/types/memory';
+import { getItem, setItem } from '@/lib/storage/helpers';
 
 const store = 'memories';
 

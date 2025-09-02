@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 
-import { createSelectors } from '@/lib';
 import { type Memory } from '@/types/memory';
 
 import { getMemories, writeMemories } from './utils';
+import { createSelectors } from '@/lib/utils';
 
 interface MemoryState {
   memories: Memory[];

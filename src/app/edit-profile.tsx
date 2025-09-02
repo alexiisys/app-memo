@@ -5,6 +5,7 @@ import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import { updateProfile, useProfile } from 'src/lib/storage/modules/profile';
 import { z } from 'zod';
 
 import ItemPicker from '@/components/edit-profile/item-picker';
@@ -21,9 +22,8 @@ import { Close } from '@/components/ui/icons';
 import { ArrowLeft } from '@/components/ui/icons/arrow-left';
 import { AvatarIcon } from '@/components/ui/icons/avatar-icon';
 import { EYE_COLORS, HAIR_COLORS } from '@/lib/consts';
-import { updateProfile, useProfile } from '@/lib/storages/profile';
+import { deleteImage, saveImagePermanently } from '@/lib/utils/image-manager';
 import { type Profile } from '@/types';
-import { deleteImage, saveImagePermanently } from '@/utils';
 
 export const editAccountSchema = z.object({
   image: z.string().optional(),

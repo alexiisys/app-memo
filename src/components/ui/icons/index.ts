@@ -1,5 +1,3 @@
-export * from './categories/salary';
-export * from './currency';
 export * from './edit-icon';
 export * from './filter-icon';
 export * from './frame-icon';
