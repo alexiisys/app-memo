@@ -1,11 +1,12 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button, Switch, Text } from '@/components/ui';
 import { useSelectedTheme } from '@/lib';
 import { openLinkInBrowser } from '@/lib/utils';
+import { Env } from '@/lib/env';
 
 export default function Settings() {
   const { selectedTheme, setSelectedTheme } = useSelectedTheme();
@@ -14,18 +15,12 @@ export default function Settings() {
 
   const handlePrivacyPolicy = () => {
     openLinkInBrowser(
-      'https://v0-true-link-privacy-policy.vercel.app/privacy-policy'
-    );
+      Env.PRIVACY_POLICY    );
   };
 
   const handleFeedback = () => {
     openLinkInBrowser(
-      'https://v0-true-link-privacy-policy.vercel.app/feedback'
-    );
-  };
-
-  const handleContactUs = () => {
-    openLinkInBrowser('mailto:truelinkchatapp@gmail.com');
+      Env.FEEDBACK_FORM    );
   };
 
   return (
@@ -67,7 +62,8 @@ export default function Settings() {
 
             <View className="absolute inset-x-0 bottom-0 gap-4">
               <Text className="text-center text-gray-600">Have a problem?</Text>
-              <Button label="Contact us" onPress={handleContactUs} />
+
+
             </View>
           </View>
         </View>

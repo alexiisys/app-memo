@@ -10,16 +10,17 @@ import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 
-import { APIProvider } from '@/api';
 import AppLinkWrapper from '@/components/wrappers/app-link-wrapper';
-import { hydrateAuth, loadSelectedTheme } from '@/lib';
+import { loadSelectedTheme } from '@/lib';
+import { readSettings } from '@/lib/storage';
+import { loadSelectedTheme } from '@/lib';
 import { readMemories } from '@/lib/storages/memories';
 import { readProfile } from '@/lib/storages/profile';
 import { readSettings } from '@/lib/storages/settings';
 import { useThemeConfig } from '@/lib/use-theme-config';
-import { 
-  initializeFacebookAttribution, 
-  trackAppLaunch 
+import {
+  initializeFacebookAttribution,
+  trackAppLaunch
 } from '@/lib/attribution';
 
 export { ErrorBoundary } from 'expo-router';
@@ -28,8 +29,8 @@ export const unstable_settings = {
   initialRouteName: '(app)',
 };
 
-hydrateAuth();
 loadSelectedTheme();
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   return (
@@ -53,11 +54,12 @@ export default function RootLayout() {
 
 function Providers({ children }: { children: React.ReactNode }) {
   const theme = useThemeConfig();
+
   useEffect(() => {
     readSettings();
     readProfile();
     readMemories();
-    
+
     // Initialize Facebook attribution tracking
     initializeFacebookAttribution();
     trackAppLaunch();
@@ -69,14 +71,12 @@ function Providers({ children }: { children: React.ReactNode }) {
     >
       <KeyboardProvider>
         <ThemeProvider value={theme}>
-          <APIProvider>
-            <BottomSheetModalProvider>
-              <AppLinkWrapper loader={<Text>Loading...</Text>}>
-                {children}
-              </AppLinkWrapper>
-              <FlashMessage position="top" />
-            </BottomSheetModalProvider>
-          </APIProvider>
+          <BottomSheetModalProvider>
+            <AppLinkWrapper loader={<Text>Loading...</Text>}>
+              {children}
+            </AppLinkWrapper>
+            <FlashMessage position="top" />
+          </BottomSheetModalProvider>
         </ThemeProvider>
       </KeyboardProvider>
     </GestureHandlerRootView>

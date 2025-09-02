@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import WebView from 'react-native-webview';
 import { type WebViewSourceUri } from 'react-native-webview/lib/WebViewTypes';
 
+import { appendUTMParameters } from '@/lib/utils';
 import { type CustomWebViewProps } from '@/types';
-import { appendUTMParameters } from '@/utils';
 
 export default function CustomWebView({
   source,

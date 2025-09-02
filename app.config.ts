@@ -25,8 +25,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   name: Env.NAME,
   description: `${Env.NAME} Mobile App`,
   owner: Env.EXPO_ACCOUNT_OWNER,
-  scheme: Env.SCHEME,
-  slug: Env.SLUG,
+  slug: Env.BUNDLE_ID.replace(/\./g, '') || 'base-app',
   version: Env.VERSION.toString(),
   orientation: 'portrait',
   icon: './assets/icon.png',
@@ -34,43 +33,64 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   newArchEnabled: true,
   updates: {
     fallbackToCacheTimeout: 0,
+    url: `https://u.expo.dev/${Env.EAS_PROJECT_ID}`,
   },
   assetBundlePatterns: ['**/*'],
   ios: {
-    buildNumber: '1',
     supportsTablet: false,
     bundleIdentifier: Env.BUNDLE_ID,
+    buildNumber: Env.BUILD_NUMBER,
     associatedDomains: [
-      `applinks:gnyq7.app.link`,
-      `applinks:gnyq7-alternate.app.link`,
+      `applinks:${Env.IOS_APP_DOMAIN}`,
+      `applinks:${Env.IOS_APP_DOMAIN.replace('.app.link', '-alternate.app.link')}`,
     ],
     config: {
-      usesNonExemptEncryption: false, // Avoid the export compliance warning on the app store
+      usesNonExemptEncryption: false,
+    },
+    infoPlist: {
+      SKAdNetworkItems: [
+        {
+          SKAdNetworkIdentifier: '238da6jt44.skadnetwork',
+        },
+      ],
     },
   },
   experiments: {
     typedRoutes: true,
   },
   android: {
+    versionCode: parseInt(Env.BUILD_NUMBER, 10),
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#2E3C4B',
     },
     package: Env.PACKAGE,
+    intentFilters: [
+      {
+        action: 'VIEW',
+        autoVerify: true,
+        data: [
+          {
+            scheme: 'https',
+            host: Env.IOS_APP_DOMAIN,
+          },
+          {
+            scheme: 'https',
+            host: Env.IOS_APP_DOMAIN.replace(
+              '.app.link',
+              '-alternate.app.link'
+            ),
+          },
+        ],
+        category: ['BROWSABLE', 'DEFAULT'],
+      },
+    ],
   },
   web: {
     favicon: './assets/favicon.png',
     bundler: 'metro',
   },
   plugins: [
-    [
-      '@config-plugins/react-native-branch',
-      {
-        apiKey: Env.BRANCH_SDK_KEY,
-        iosAppDomain: 'gnyq7.app.link',
-      },
-    ],
-
     [
       'react-native-fbsdk-next',
       {
@@ -81,6 +101,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         advertiserIDCollectionEnabled: true,
         autoLogAppEventsEnabled: true,
         isAutoInitEnabled: true,
+      },
+    ],
+    [
+      '@config-plugins/react-native-branch',
+      {
+        apiKey: Env.BRANCH_LIVE_KEY,
+        iosAppDomain: Env.IOS_APP_DOMAIN,
       },
     ],
     [
@@ -120,6 +147,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ],
   extra: {
     ...ClientEnv,
+    IOS_URL: Env.IOS_URL,
+    ANDROID_URL: Env.ANDROID_URL,
     eas: {
       projectId: Env.EAS_PROJECT_ID,
     },

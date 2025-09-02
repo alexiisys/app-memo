@@ -11,6 +11,7 @@ import { useProfile } from '@/lib/storages/profile';
 export default function TabLayout() {
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
+
   const profile = useProfile.use.profile();
   return (
     <>
@@ -36,7 +37,7 @@ export default function TabLayout() {
                 color={focused ? colors.coralPink : colors.lightGrey}
               />
             ),
-            tabBarButtonTestID: 'feed-tab',
+            tabBarButtonTestID: 'index-tab',
           }}
         />
 
@@ -58,7 +59,7 @@ export default function TabLayout() {
                   color={focused ? colors.coralPink : colors.lightGrey}
                 />
               ),
-            tabBarButtonTestID: 'balance-tab',
+            tabBarButtonTestID: 'profile-tab',
           }}
         />
         <Tabs.Screen
