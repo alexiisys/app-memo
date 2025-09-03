@@ -59,7 +59,7 @@ export default function EditAccountScreen() {
       image: profile?.image ?? '',
       firstName: profile?.firstName ?? '',
       lastName: profile?.lastName ?? '',
-      birth: profile?.birth ?? new Date().toLocaleDateString(),
+      birth: profile?.birth ?? new Date().toString(),
       gender: profile?.gender ?? 'man',
       orientation: profile?.orientation ?? 'straight',
       country: profile?.country ?? '',
@@ -105,33 +105,30 @@ export default function EditAccountScreen() {
   const onClosePicker = () => setDatePickerShow(false);
 
   return (
-    <SafeAreaView className="flex-1 ">
-      <View className="flex-row items-center justify-between px-4 py-3 shadow-md">
+    <SafeAreaView className="flex-1 bg-orange">
+      <View className="flex-row items-center gap-4 px-4 py-3 shadow-md">
         <TouchableOpacity onPress={() => router.back()}>
-          <ArrowLeft width={24} height={24} />
+          <ArrowLeft width={24} height={24} color={colors.white} />
         </TouchableOpacity>
-        <Text className="text-xl font-bold">Add a memory</Text>
+        <Text className="text-xl font-bold text-white">Add a memory</Text>
         <View style={{ width: 24 }} />
       </View>
       <View className="mb-2 h-px bg-gray-200" />
       <ScrollView
         contentContainerStyle={{ paddingBottom: 80, paddingHorizontal: 16 }}
       >
-        <View className="items-center py-8">
+        <View className="self-start py-2">
           <Controller
             control={control}
             name="image"
             render={({ field: { value, onChange } }) => (
               <TouchableOpacity
-                className="w-full items-center py-8"
+                className="w-full  py-8"
                 onPress={() => onPickImage(onChange)}
               >
                 {value ? (
                   <View className="relative">
-                    <Image
-                      source={{ uri: value }}
-                      className="size-36 rounded-full"
-                    />
+                    <Image source={{ uri: value }} className="size-44" />
                     <TouchableOpacity
                       onPress={() => onChange('')}
                       className="absolute -right-2 -top-2 rounded-full bg-white p-1"
@@ -144,7 +141,7 @@ export default function EditAccountScreen() {
                     <AvatarIcon
                       width={44}
                       height={44}
-                      color={colors.lightBlue}
+                      color={colors.orange}
                     />
                   </View>
                 )}

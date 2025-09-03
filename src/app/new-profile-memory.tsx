@@ -6,6 +6,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { addMemory } from 'src/lib/storage/modules/memories';
 import { z } from 'zod';
 
 import ItemPicker from '@/components/edit-profile/item-picker';
@@ -21,9 +22,8 @@ import { Close } from '@/components/ui/icons';
 import { ArrowLeft } from '@/components/ui/icons/arrow-left';
 import { AvatarIcon } from '@/components/ui/icons/avatar-icon';
 import { EYE_COLORS, HAIR_COLORS } from '@/lib/consts';
-import { addMemory } from 'src/lib/storage/modules/memories';
-import { type Memory } from '@/types';
 import { saveImagePermanently } from '@/lib/utils/image-manager';
+import { type Memory } from '@/types';
 
 const schema = z.object({
   image: z.string().optional(),
@@ -56,6 +56,7 @@ export default function AddMemoryScreen() {
       title: '',
       country: '',
       city: '',
+      birth: new Date().toString(),
       description: '',
       gender: 'man',
       orientation: 'straight',
@@ -71,6 +72,7 @@ export default function AddMemoryScreen() {
     },
   });
 
+  console.log();
   const onPickImage = async (onChange: (val: string) => void) => {
     const result = await launchImageLibraryAsync();
     if (!result.canceled) onChange(result.assets[0].uri);
@@ -87,6 +89,7 @@ export default function AddMemoryScreen() {
       image: savedUri,
       ...otherData,
     };
+    console.log(123);
     addMemory(newMemory);
     router.back();
   };
@@ -96,7 +99,7 @@ export default function AddMemoryScreen() {
   const onClosePicker = () => setDatePickerShow(false);
 
   return (
-    <SafeAreaView className="flex-1 ">
+    <SafeAreaView className="flex-1 bg-orange">
       <View className="flex-row items-center justify-between px-4 py-3">
         <TouchableOpacity onPress={() => router.back()}>
           <ArrowLeft width={22} height={22} />

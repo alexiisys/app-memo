@@ -18,9 +18,9 @@ const inputTv = tv({
   slots: {
     container: 'flex-1',
     inputContainer: 'align-center relative flex-row gap-2',
-    label: 'text-md mb-2 font-gilroy font-medium text-grey',
+    label: 'text-md mb-2 font-gilroy font-medium text-lightOrange2',
     input:
-      'rounded-xl border-neutral-300 bg-light p-4 font-gilroy text-base font-medium leading-5  dark:border-neutral-700 dark:bg-dark dark:text-white',
+      'bg-darkOrange p-4 font-gilroy-600 text-base text-white font-medium leading-5  dark:bg-darkOrange dark:text-white',
   },
 
   variants: {
@@ -135,6 +135,7 @@ export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
           className={styles.input()}
           onBlur={onBlur}
           onFocus={onFocus}
+          placeholderTextColor={'#F4F2EE'}
           {...inputProps}
           style={StyleSheet.flatten([
             { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' },

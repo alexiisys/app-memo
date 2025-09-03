@@ -4,7 +4,7 @@ import { useColorScheme } from 'nativewind';
 import React from 'react';
 import { useProfile } from 'src/lib/storage/modules/profile';
 
-import { colors, FocusAwareStatusBar, Image } from '@/components/ui';
+import { colors, FocusAwareStatusBar } from '@/components/ui';
 import { SearchIcon } from '@/components/ui/icons';
 import { AvatarIcon } from '@/components/ui/icons/avatar-icon';
 import { SettingsIcon } from '@/components/ui/icons/setting-icon';
@@ -19,10 +19,13 @@ export default function TabLayout() {
       <FocusAwareStatusBar />
       <Tabs
         screenOptions={{
+          tabBarShowLabel: false,
           tabBarInactiveTintColor: isDark ? colors.grey : colors.lightGrey,
           tabBarActiveTintColor: colors.coralPink,
           tabBarStyle: {
-            backgroundColor: isDark ? colors.darkBackground : colors.white,
+            paddingTop: 10,
+            paddingHorizontal: 48,
+            backgroundColor: colors.orange,
           },
         }}
       >
@@ -35,7 +38,7 @@ export default function TabLayout() {
               <SearchIcon
                 width={24}
                 height={24}
-                color={focused ? colors.coralPink : colors.lightGrey}
+                color={focused ? 'white' : '#E0E0E0'}
               />
             ),
             tabBarButtonTestID: 'index-tab',
@@ -47,19 +50,13 @@ export default function TabLayout() {
           options={{
             headerShown: false,
             title: 'Account',
-            tabBarIcon: ({ focused }) =>
-              profile?.image ? (
-                <Image
-                  source={{ uri: profile?.image }}
-                  className="size-6 rounded-3xl"
-                />
-              ) : (
-                <AvatarIcon
-                  width={24}
-                  height={24}
-                  color={focused ? colors.coralPink : colors.lightGrey}
-                />
-              ),
+            tabBarIcon: ({ focused }) => (
+              <AvatarIcon
+                width={24}
+                height={24}
+                color={focused ? 'white' : '#E0E0E0'}
+              />
+            ),
             tabBarButtonTestID: 'profile-tab',
           }}
         />
@@ -69,9 +66,7 @@ export default function TabLayout() {
             headerShown: false,
             title: 'Settings',
             tabBarIcon: ({ focused }) => (
-              <SettingsIcon
-                color={focused ? colors.coralPink : colors.lightGrey}
-              />
+              <SettingsIcon color={focused ? 'white' : '#E0E0E0'} />
             ),
             tabBarButtonTestID: 'settings-tab',
           }}
