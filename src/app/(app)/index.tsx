@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useMemory } from 'src/lib/storage/modules/memories';
+import { likeMemory, useMemory } from 'src/lib/storage/modules/memories';
 
 import { colors, Image, Text, View } from '@/components/ui';
 import { HeartIcon, Plus } from '@/components/ui/icons';
@@ -23,7 +23,7 @@ export const MemoryCard: React.FC<MemoryCardProps> = ({ memory }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="bg-lightOrange relative mx-3 mb-4 flex-row overflow-hidden shadow-md  dark:bg-dark"
+      className="relative mx-3 mb-4 flex-row overflow-hidden bg-lightOrange shadow-md dark:bg-[#47403C]"
     >
       <Image
         source={memory.image}
@@ -32,20 +32,20 @@ export const MemoryCard: React.FC<MemoryCardProps> = ({ memory }) => {
       />
       <View className="flex-1 gap-1 px-4 py-3">
         <Text
-          className="text-orange font-gilroy-700 text-2xl"
+          className="font-gilroy-700 text-2xl text-orange"
           numberOfLines={1}
         >
           {memory.title}, {getAge(new Date(memory?.birth ?? Date.now()))}
         </Text>
         <View className=" flex-row items-center">
           <PinIcon color={colors.dirty} />
-          <Text className="text-dirty ml-1 font-gilroy-500">{memory.city}</Text>
+          <Text className="ml-1 font-gilroy-500 text-dirty">{memory.city}</Text>
         </View>
-        <View className="flex-wrap flex-row gap-3">
+        <View className="flex-row flex-wrap gap-3">
           {memory.interests.map((item, index) => (
             <Text
               key={item + index}
-              className="self-center bg-white p-1 text-black"
+              className="self-center bg-white px-2 py-1 font-gilroy-700 text-black dark:bg-[#1F1E1D] dark:text-white"
             >
               {item}
             </Text>
@@ -53,10 +53,15 @@ export const MemoryCard: React.FC<MemoryCardProps> = ({ memory }) => {
         </View>
       </View>
       <TouchableOpacity
-        className="absolute right-3 top-3 z-10 items-center justify-center bg-white p-2"
+        onPress={() => likeMemory(memory)}
+        className="absolute right-3 top-3 z-10 items-center justify-center bg-white p-2 dark:bg-[#1F1E1D]"
         activeOpacity={0.8}
       >
-        <HeartIcon width={20} height={20} color={colors.coralPink} />
+        <HeartIcon
+          width={20}
+          height={20}
+          color={memory.liked ? colors.coralPink : colors.grey}
+        />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -74,7 +79,7 @@ export default function Contacts() {
   return (
     <View className="flex-1">
       <View
-        className="bg-orange flex-row items-center justify-between px-6 pb-3"
+        className="flex-row items-center justify-between bg-orange px-6 pb-3"
         style={{
           paddingTop: insets.top + 12,
         }}

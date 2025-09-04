@@ -12,6 +12,7 @@ interface MemoryState {
   deleteMemory: (id: string) => void;
   getMemory: (id: string) => Memory | undefined;
   updateMemory: (memory: Memory) => void;
+  likeMemory: (memory: Memory) => void;
 }
 
 const _useMemory = create<MemoryState>((set, get) => ({
@@ -40,6 +41,14 @@ const _useMemory = create<MemoryState>((set, get) => ({
     }));
     writeMemories(get().memories);
   },
+  likeMemory: (memory: Memory) => {
+    set((state) => ({
+      memories: state.memories.map((item) =>
+        item.id === memory.id ? { ...memory, liked: !memory.liked } : item
+      ),
+    }));
+    writeMemories(get().memories);
+  },
 }));
 
 export const useMemory = createSelectors(_useMemory);
@@ -50,3 +59,4 @@ export const addMemory = (memory: Memory) =>
   _useMemory.getState().addMemory(memory);
 export const deleteMemory = _useMemory.getState().deleteMemory;
 export const updateMemory = _useMemory.getState().updateMemory;
+export const likeMemory = _useMemory.getState().likeMemory;

@@ -7,15 +7,15 @@ import { tv } from 'tailwind-variants';
 
 const button = tv({
   slots: {
-    container: 'flex flex-row items-center justify-center gap-2 rounded-3xl',
-    label: 'font-gilroy-500',
+    container: 'flex flex-row items-center justify-center gap-2',
+    label: 'font-gilroy-700',
   },
 
   variants: {
     variant: {
       default: {
-        container: 'bg-blue',
-        label: 'text-white',
+        container: 'bg-white',
+        label: 'text-black',
       },
       secondary: {
         container: 'bg-white shadow-md',
@@ -23,7 +23,7 @@ const button = tv({
       },
       inactive: {
         container: '',
-        label: 'text-black dark:text-white',
+        label: 'text-white dark:text-white',
       },
     },
     size: {

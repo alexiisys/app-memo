@@ -79,7 +79,6 @@ export default function AddMemoryScreen() {
   };
 
   const onSubmit = async (data: FormType) => {
-    console.log(123);
     const { image, interests, ...otherData } = data;
     const savedUri = await saveImagePermanently(image);
     const newMemory: Memory = {
@@ -100,11 +99,11 @@ export default function AddMemoryScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-orange">
-      <View className="flex-row items-center justify-between px-4 py-3">
+      <View className="flex-row items-center gap-4 px-4 py-3">
         <TouchableOpacity onPress={() => router.back()}>
-          <ArrowLeft width={22} height={22} />
+          <ArrowLeft width={22} height={22} color={colors.white} />
         </TouchableOpacity>
-        <Text className="text-xl font-bold">Add a memory</Text>
+        <Text className="text-xl font-bold text-white text-white">Add a memory</Text>
         <View style={{ width: 24 }} />
       </View>
       <ScrollView
@@ -116,7 +115,7 @@ export default function AddMemoryScreen() {
           name="image"
           render={({ field: { value, onChange } }) => (
             <TouchableOpacity
-              className="w-full items-center py-8"
+              className="w-full py-8 px-4"
               onPress={() => onPickImage(onChange)}
             >
               {value ? (
@@ -133,14 +132,14 @@ export default function AddMemoryScreen() {
                   </TouchableOpacity>
                 </View>
               ) : (
-                <View className="size-36 items-center justify-center rounded-full bg-light">
-                  <AvatarIcon width={44} height={44} color={colors.lightBlue} />
+                <View className="size-36 items-center justify-center bg-light">
+                  <AvatarIcon width={44} height={44} color={colors.orange} />
                 </View>
               )}
             </TouchableOpacity>
           )}
         />
-        <Text className="mb-2 px-4 text-xl font-bold">Personal info</Text>
+        <Text className="mb-2 px-4 text-xl font-bold text-white">Personal info</Text>
         <View className="mt-4 gap-6 px-4">
           <ControlledInput
             control={control}
@@ -182,7 +181,7 @@ export default function AddMemoryScreen() {
             control={control}
           />
           <View>
-            <Text className="mb-2 mt-4 text-base text-grey">Gender</Text>
+            <Text className="mb-2 mt-4 text-base text-white">Gender</Text>
             <Controller
               control={control}
               name="gender"
@@ -193,33 +192,33 @@ export default function AddMemoryScreen() {
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value === 'man' ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${value === 'man' ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${value === 'man' ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value === 'man' ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Man</Text>
+                    <Text className="ml-2 text-white">Man</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => onChange('female')}
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value === 'female' ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${value === 'female' ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${value === 'female' ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value === 'female' ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Female</Text>
+                    <Text className="ml-2 text-white">Female</Text>
                   </TouchableOpacity>
                 </View>
               )}
             />
           </View>
           <View>
-            <Text className="mb-2 mt-4 text-base text-grey">Orientation</Text>
+            <Text className="mb-2 mt-4 text-base text-white">Orientation</Text>
             <Controller
               control={control}
               name="orientation"
@@ -230,27 +229,27 @@ export default function AddMemoryScreen() {
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value === 'straight' ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 border-white`}
                     >
                       <View
-                        className={`rounded-full ${value === 'straight' ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value === 'straight' ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Straight</Text>
+                    <Text className="ml-2 text-white">Straight</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => onChange('homosexual')}
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value === 'homosexual' ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${value === 'homosexual' ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${value === 'homosexual' ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value === 'homosexual' ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
 
-                    <Text className="ml-2">Homosexual</Text>
+                    <Text className="ml-2 text-white">Homosexual</Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -317,7 +316,7 @@ export default function AddMemoryScreen() {
             />
           </View>
           <View>
-            <Text className="mb-2 mt-4 text-base">Relationships</Text>
+            <Text className="mb-2 mt-4 text-base text-white">Relationships</Text>
             <Controller
               control={control}
               name="relationships"
@@ -328,33 +327,33 @@ export default function AddMemoryScreen() {
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Yes</Text>
+                    <Text className="ml-2 text-white">Yes</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => onChange(false)}
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${!value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${!value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${!value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${!value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">No</Text>
+                    <Text className="ml-2 text-white">No</Text>
                   </TouchableOpacity>
                 </View>
               )}
             />
           </View>
           <View>
-            <Text className="mb-2 mt-4 text-base">Smoking</Text>
+            <Text className="mb-2 mt-4 text-base text-white">Smoking</Text>
             <Controller
               control={control}
               name="smoking"
@@ -365,33 +364,33 @@ export default function AddMemoryScreen() {
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Yes</Text>
+                    <Text className="ml-2 text-white">Yes</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => onChange(false)}
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${!value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${!value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${!value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${!value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">No</Text>
+                    <Text className="ml-2 text-white">No</Text>
                   </TouchableOpacity>
                 </View>
               )}
             />
           </View>
           <View>
-            <Text className="mb-2 mt-4 text-base">Alcohol</Text>
+            <Text className="mb-2 mt-4 text-base text-white">Alcohol</Text>
             <Controller
               control={control}
               name="alcohol"
@@ -402,44 +401,44 @@ export default function AddMemoryScreen() {
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Yes</Text>
+                    <Text className="ml-2 text-white">Yes</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => onChange(false)}
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${!value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${!value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${!value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${!value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">No</Text>
+                    <Text className="ml-2 text-white">No</Text>
                   </TouchableOpacity>
                 </View>
               )}
             />
           </View>
           <View className="pt-4">
-            <Text className="mb-2 font-gilroy-700 text-lg">Interests</Text>
+            <Text className="mb-2 font-gilroy-700 text-lg text-white">Interests</Text>
             <Controller
               control={control}
               name="interests"
               render={({ field: { value, onChange } }) => (
                 <View
-                  className={`rounded-xl bg-light dark:border dark:border-stroke dark:bg-darkBackground`}
+                  className={`bg-darkOrange dark:border dark:border-stroke dark:bg-darkBackground`}
                 >
                   <Input
-                    outlined
                     value={value?.value ?? ''}
                     onChangeText={(text) => onChange({ ...value, value: text })}
+                    placeholder={'Enter a Hobby'}
                     icon={
                       <TouchableOpacity
                         onPress={() =>
@@ -452,7 +451,7 @@ export default function AddMemoryScreen() {
                           })
                         }
                       >
-                        <Text className="mr-6 p-2 font-gilroy-600 text-lg text-blue">
+                        <Text className="mr-6 p-2 font-gilroy-600 text-lg text-white">
                           Save
                         </Text>
                       </TouchableOpacity>
@@ -461,15 +460,15 @@ export default function AddMemoryScreen() {
                   {value && value.array && value.array.length > 0 && (
                     <View className="mx-4 gap-3 py-4">
                       <View className="flex-row items-center justify-between ">
-                        <Text className="text-base text-grey">
+                        <Text className="text-base text-lightOrange2">
                           Total: {value.array.length}
                         </Text>
                         <TouchableOpacity
                           onPress={() => onChange({ ...value, array: [] })}
                           className="flex-row items-center gap-2"
                         >
-                          <Text className="text-base text-grey">Clear all</Text>
-                          <Close width={16} height={16} color={colors.grey} />
+                          <Text className="text-base text-white">Clear all</Text>
+                          <Close width={16} height={16} color={colors.white} />
                         </TouchableOpacity>
                       </View>
 
@@ -477,9 +476,9 @@ export default function AddMemoryScreen() {
                         {value.array.map((item) => (
                           <View
                             key={item}
-                            className="flex-row items-center justify-between gap-2 rounded-3xl bg-blue px-4 py-2"
+                            className="flex-row items-center justify-between gap-2 bg-white px-4 py-2"
                           >
-                            <Text className="font-gilroy-500 text-base text-white">
+                            <Text className="font-gilroy-500 text-base text-black">
                               {item}
                             </Text>
                             <TouchableOpacity
@@ -495,7 +494,7 @@ export default function AddMemoryScreen() {
                               <Close
                                 width={16}
                                 height={16}
-                                color={colors.white}
+                                color={colors.grey}
                               />
                             </TouchableOpacity>
                           </View>
@@ -508,7 +507,7 @@ export default function AddMemoryScreen() {
             />
           </View>
           <View>
-            <Text className="mb-2 mt-4 font-gilroy-700 text-lg">
+            <Text className="mb-2 mt-4 font-gilroy-700 text-lg text-white">
               Description
             </Text>
             <ControlledInput
@@ -521,7 +520,7 @@ export default function AddMemoryScreen() {
               multiline
             />
           </View>
-          <View className="flex-row items-center gap-2 py-8">
+          <View className="gap-2 py-8">
             <Button
               className="flex-1"
               label="Save"

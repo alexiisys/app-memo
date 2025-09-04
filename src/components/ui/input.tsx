@@ -135,7 +135,7 @@ export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
           className={styles.input()}
           onBlur={onBlur}
           onFocus={onFocus}
-          placeholderTextColor={'#F4F2EE'}
+          placeholderTextColor={'rgba(244,242,238,0.67)'}
           {...inputProps}
           style={StyleSheet.flatten([
             { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' },

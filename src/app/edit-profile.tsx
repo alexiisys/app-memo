@@ -123,7 +123,7 @@ export default function EditAccountScreen() {
             name="image"
             render={({ field: { value, onChange } }) => (
               <TouchableOpacity
-                className="w-full  py-8"
+                className="py-8"
                 onPress={() => onPickImage(onChange)}
               >
                 {value ? (
@@ -137,12 +137,8 @@ export default function EditAccountScreen() {
                     </TouchableOpacity>
                   </View>
                 ) : (
-                  <View className="size-36 items-center justify-center rounded-full bg-light">
-                    <AvatarIcon
-                      width={44}
-                      height={44}
-                      color={colors.orange}
-                    />
+                  <View className="size-36 items-center justify-center bg-light">
+                    <AvatarIcon width={44} height={44} color={colors.orange} />
                   </View>
                 )}
               </TouchableOpacity>
@@ -150,7 +146,9 @@ export default function EditAccountScreen() {
           />
         </View>
 
-        <Text className="mb-2 text-xl font-bold">Personal info</Text>
+        <Text className="mb-2 text-xl font-bold text-white dark:text-white">
+          Personal info
+        </Text>
         <View className="mt-4 gap-6">
           <ControlledInput
             control={control}
@@ -198,7 +196,9 @@ export default function EditAccountScreen() {
             control={control}
           />
           <View>
-            <Text className="mb-2 mt-4 text-base text-grey">Gender</Text>
+            <Text className="mb-2 mt-4 text-base text-lightOrange2">
+              Gender
+            </Text>
             <Controller
               control={control}
               name="gender"
@@ -208,34 +208,30 @@ export default function EditAccountScreen() {
                     onPress={() => onChange('man')}
                     className="flex-row items-center"
                   >
-                    <View
-                      className={`rounded-full border p-0.5 ${value === 'man' ? 'border-blue' : 'border-gray-400 '}`}
-                    >
+                    <View className={`rounded-full border border-white p-0.5`}>
                       <View
-                        className={`rounded-full ${value === 'man' ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value === 'man' ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Man</Text>
+                    <Text className="ml-2 text-white">Man</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => onChange('female')}
                     className="flex-row items-center"
                   >
-                    <View
-                      className={`rounded-full border p-0.5 ${value === 'female' ? 'border-blue' : 'border-gray-400 '}`}
-                    >
+                    <View className={`rounded-full border border-white p-0.5`}>
                       <View
-                        className={`rounded-full ${value === 'female' ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value === 'female' ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Female</Text>
+                    <Text className="ml-2 text-white">Female</Text>
                   </TouchableOpacity>
                 </View>
               )}
             />
           </View>
           <View>
-            <Text className="mb-2 mt-4 text-base text-grey">Orientation</Text>
+            <Text className="mb-2 mt-4 text-base text-lightOrange2">Orientation</Text>
             <Controller
               control={control}
               name="orientation"
@@ -246,27 +242,27 @@ export default function EditAccountScreen() {
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value === 'straight' ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 border-white`}
                     >
                       <View
-                        className={`rounded-full ${value === 'straight' ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value === 'straight' ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Straight</Text>
+                    <Text className="ml-2 text-white">Straight</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => onChange('homosexual')}
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value === 'homosexual' ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${value === 'homosexual' ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${value === 'homosexual' ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value === 'homosexual' ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
 
-                    <Text className="ml-2">Homosexual</Text>
+                    <Text className="ml-2 text-white">Homosexual</Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -333,7 +329,7 @@ export default function EditAccountScreen() {
             />
           </View>
           <View>
-            <Text className="mb-2 mt-4 text-base">Relationships</Text>
+            <Text className="mb-2 mt-4 text-base text-lightOrange2">Relationships</Text>
             <Controller
               control={control}
               name="relationships"
@@ -344,33 +340,33 @@ export default function EditAccountScreen() {
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Yes</Text>
+                    <Text className="ml-2 text-white">Yes</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => onChange(false)}
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${!value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${!value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${!value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${!value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">No</Text>
+                    <Text className="ml-2 text-white">No</Text>
                   </TouchableOpacity>
                 </View>
               )}
             />
           </View>
           <View>
-            <Text className="mb-2 mt-4 text-base">Smoking</Text>
+            <Text className="mb-2 mt-4 text-base text-lightOrange2">Smoking</Text>
             <Controller
               control={control}
               name="smoking"
@@ -381,33 +377,33 @@ export default function EditAccountScreen() {
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Yes</Text>
+                    <Text className="ml-2 text-white">Yes</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => onChange(false)}
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${!value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${!value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${!value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${!value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">No</Text>
+                    <Text className="ml-2 text-white">No</Text>
                   </TouchableOpacity>
                 </View>
               )}
             />
           </View>
           <View>
-            <Text className="mb-2 mt-4 text-base">Alcohol</Text>
+            <Text className="mb-2 mt-4 text-base text-white">Alcohol</Text>
             <Controller
               control={control}
               name="alcohol"
@@ -418,44 +414,44 @@ export default function EditAccountScreen() {
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">Yes</Text>
+                    <Text className="ml-2 text-white">Yes</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => onChange(false)}
                     className="flex-row items-center"
                   >
                     <View
-                      className={`rounded-full border p-0.5 ${!value ? 'border-blue' : 'border-gray-400 '}`}
+                      className={`rounded-full border p-0.5 ${!value ? 'border-white' : 'border-white '}`}
                     >
                       <View
-                        className={`rounded-full ${!value ? 'bg-blue' : ''} p-[5px]`}
+                        className={`rounded-full ${!value ? 'bg-white' : ''} p-[5px]`}
                       />
                     </View>
-                    <Text className="ml-2">No</Text>
+                    <Text className="ml-2 text-white">No</Text>
                   </TouchableOpacity>
                 </View>
               )}
             />
           </View>
           <View className="pt-4">
-            <Text className="mb-2 font-gilroy-700 text-lg">Interests</Text>
+            <Text className="mb-2 font-gilroy-700 text-lg text-white">Interests</Text>
             <Controller
               control={control}
               name="interests"
               render={({ field: { value, onChange } }) => (
                 <View
-                  className={`rounded-xl bg-light dark:border dark:border-stroke dark:bg-darkBackground`}
+                  className={`bg-darkOrange dark:border dark:border-stroke dark:bg-darkBackground`}
                 >
                   <Input
-                    outlined
                     value={value?.value ?? ''}
                     onChangeText={(text) => onChange({ ...value, value: text })}
+                    placeholder={'Enter a Hobby'}
                     icon={
                       <TouchableOpacity
                         onPress={() =>
@@ -468,7 +464,7 @@ export default function EditAccountScreen() {
                           })
                         }
                       >
-                        <Text className="mr-6 p-2 font-gilroy-600 text-lg text-blue">
+                        <Text className="mr-6 p-2 font-gilroy-600 text-lg text-white">
                           Save
                         </Text>
                       </TouchableOpacity>
@@ -477,15 +473,15 @@ export default function EditAccountScreen() {
                   {value && value.array && value.array.length > 0 && (
                     <View className="mx-4 gap-3 py-4">
                       <View className="flex-row items-center justify-between ">
-                        <Text className="text-base text-grey">
+                        <Text className="text-base text-lightOrange2">
                           Total: {value.array.length}
                         </Text>
                         <TouchableOpacity
                           onPress={() => onChange({ ...value, array: [] })}
                           className="flex-row items-center gap-2"
                         >
-                          <Text className="text-base text-grey">Clear all</Text>
-                          <Close width={16} height={16} color={colors.grey} />
+                          <Text className="text-base text-white">Clear all</Text>
+                          <Close width={16} height={16} color={colors.white} />
                         </TouchableOpacity>
                       </View>
 
@@ -493,9 +489,9 @@ export default function EditAccountScreen() {
                         {value.array.map((item) => (
                           <View
                             key={item}
-                            className="flex-row items-center justify-between gap-2 rounded-3xl bg-blue px-4 py-2"
+                            className="flex-row items-center justify-between gap-2 bg-white dark:bg-[#47403C] px-4 py-2"
                           >
-                            <Text className="font-gilroy-500 text-base text-white">
+                            <Text className="font-gilroy-500 text-base text-black">
                               {item}
                             </Text>
                             <TouchableOpacity
@@ -511,7 +507,7 @@ export default function EditAccountScreen() {
                               <Close
                                 width={16}
                                 height={16}
-                                color={colors.white}
+                                color={colors.grey}
                               />
                             </TouchableOpacity>
                           </View>
@@ -524,7 +520,7 @@ export default function EditAccountScreen() {
             />
           </View>
           <View>
-            <Text className="mb-2 mt-4 font-gilroy-700 text-lg">
+            <Text className="mb-2 mt-4 font-gilroy-700 text-lg text-white">
               Description
             </Text>
             <ControlledInput
@@ -538,14 +534,14 @@ export default function EditAccountScreen() {
             />
           </View>
         </View>
-        <View className="my-8 flex-1 flex-row items-center">
+        <View className="my-8 flex-1 gap-3">
           <Button
             className="flex-1"
             label={'Save'}
             onPress={handleSubmit(onSubmit)}
           />
           <TouchableOpacity className="flex-1" onPress={() => router.back()}>
-            <Text className="text-center font-gilroy-700 text-base text-gray-500">
+            <Text className="text-center font-gilroy-700 text-base text-white">
               Cancel
             </Text>
           </TouchableOpacity>

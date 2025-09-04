@@ -13,6 +13,7 @@ module.exports = {
   orange: '#FF6543',
   lightOrange: '#F2DCD0',
   lightOrange2: '#F4F2EE',
+  lightOrange3: '#F2DCD0',
   darkOrange: '#DA563A',
   dirty: '#AD8880',
   charcoal: {

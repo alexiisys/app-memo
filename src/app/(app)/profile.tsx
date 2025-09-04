@@ -16,7 +16,7 @@ const ProfileInfoRow = ({ label, value }: { label: string; value: string }) => (
     <Text className="flex-1 bg-[#FFFFFF33] p-3 text-base capitalize  text-white dark:text-white">
       {label}
     </Text>
-    <Text className="flex-1 bg-white p-3 text-center font-gilroy-700 text-base capitalize text-black">
+    <Text className="flex-1 bg-white dark:bg-black p-3 text-center font-gilroy-700 text-base capitalize text-black">
       {value}
     </Text>
   </View>
@@ -43,7 +43,7 @@ export default function UserProfileScreen() {
             />
           ) : (
             <View className="size-44 items-center justify-center bg-light">
-              <AvatarIcon width={44} height={44} color={colors.lightBlue} />
+              <AvatarIcon width={44} height={44} color={colors.orange} />
             </View>
           )}
           <View className="flex-row items-end justify-between">
@@ -79,7 +79,7 @@ export default function UserProfileScreen() {
               </Text>
               <View className="mx-4 mt-2 flex-row flex-wrap gap-2">
                 {profile?.interests.map((interest) => (
-                  <View key={interest} className="bg-white px-4 py-2">
+                  <View key={interest} className="bg-white dark:bg-[#1F1E1D] px-4 py-2">
                     <Text className="font-gilroy-600 text-base text-black">
                       {interest}
                     </Text>

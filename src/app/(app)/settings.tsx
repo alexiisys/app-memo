@@ -24,8 +24,8 @@ export default function Settings() {
   return (
     <>
       <SafeAreaView className="mt-2 flex-1">
-        <View className="flex-row items-center justify-between px-6 pb-3">
-          <Text className="font-gilroy-700 text-2xl">Settings</Text>
+        <View className="px-6 pb-3">
+          <Text className="font-gilroy-700 text-2xl text-center">Settings</Text>
         </View>
         <View className="mb-2 h-px bg-gray-200" />
         <View className="mt-8 flex-1 px-6">
