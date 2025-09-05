@@ -66,7 +66,7 @@ export default function TabLayout() {
             headerShown: false,
             title: 'Settings',
             tabBarIcon: ({ focused }) => (
-              <SettingsIcon color={focused ? 'white' : '#E0E0E0'} />
+              <SettingsIcon color={focused ? colors.white : '#E0E0E0'} />
             ),
             tabBarButtonTestID: 'settings-tab',
           }}

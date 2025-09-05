@@ -478,7 +478,7 @@ export default function AddMemoryScreen() {
                             key={item}
                             className="flex-row items-center justify-between gap-2 bg-white px-4 py-2"
                           >
-                            <Text className="font-gilroy-500 text-base text-black">
+                            <Text className="font-gilroy-500 text-base text-black dark:text-black">
                               {item}
                             </Text>
                             <TouchableOpacity
