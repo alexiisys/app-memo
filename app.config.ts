@@ -92,6 +92,16 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   plugins: [
     [
+      'expo-build-properties',
+      {
+        android: {
+          compileSdkVersion: 35,
+          targetSdkVersion: 35,
+          buildToolsVersion: '35.0.0',
+        },
+      },
+    ],
+    [
       'react-native-fbsdk-next',
       {
         appID: Env.FB_APP_ID,

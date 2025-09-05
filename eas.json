@@ -4,7 +4,6 @@
   },
   "build": {
     "production": {
-      "channel": "production",
       "distribution": "store",
       "pnpm": "9.12.3",
       "ios": {
@@ -21,14 +20,12 @@
       }
     },
     "staging": {
-      "channel": "staging",
       "distribution": "internal",
       "pnpm": "9.12.3",
       "ios": {
         "image": "latest"
       },
       "android": {
-        "buildType": "apk",
         "image": "latest"
       },
       "env": {
